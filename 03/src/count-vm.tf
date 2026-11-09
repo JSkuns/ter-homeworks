@@ -19,7 +19,7 @@ resource "yandex_compute_instance" "web" {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu.id
       type     = "network-hdd"
-      size     = 10
+      size     = 5
     }
     auto_delete = true
   }
@@ -35,7 +35,7 @@ resource "yandex_compute_instance" "web" {
     ssh-keys           = "ubuntu:${local.ssh_public_key}"
   }
 
-  depends_on = [ # 
-    yandex_compute_instance.db
-  ]
+  #depends_on = [ # 
+    #yandex_compute_instance.db
+  #]
 }
