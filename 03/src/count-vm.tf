@@ -3,7 +3,7 @@ resource "yandex_compute_instance" "web" {
 
   name        = "web-${count.index + 1}"
   platform_id = "standard-v3"
-  zone        = var.default_zone
+  zone        = "ru-central1-d"
 
   resources {
     cores         = 2
@@ -25,7 +25,7 @@ resource "yandex_compute_instance" "web" {
   }
 
   network_interface {
-    subnet_id          = yandex_vpc_subnet.develop.id
+    subnet_id          = yandex_vpc_subnet.develop_d.id
     nat                = true
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
@@ -35,7 +35,7 @@ resource "yandex_compute_instance" "web" {
     ssh-keys           = "ubuntu:${local.ssh_public_key}"
   }
 
-  #depends_on = [ # 
-    #yandex_compute_instance.db
-  #]
+  depends_on = [
+    yandex_compute_instance.db
+  ]
 }
