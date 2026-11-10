@@ -8,7 +8,7 @@ terraform {
       version = "~> 3.5.1"
     }
   }
-  required_version = "~>1.16.0" /*Многострочный комментарий.
+  required_version = "~>1.17.0" /*Многострочный комментарий.
  Требуемая версия terraform */
 }
 provider "docker" {}
@@ -31,7 +31,7 @@ resource "docker_image" "nginx" {
 
 resource "docker_container" "hello_world" {
   image = docker_image.nginx.image_id
-  name  = "example_${random_password.random_string.result}"
+  name  = "hello_world"
 
   ports {
     internal = 80
